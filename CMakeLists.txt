@@ -1,0 +1,15 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+PROJECT(pol)
+
+FILE(GLOB_RECURSE POL_SOURCES src/*.cpp)
+
+ADD_EXECUTABLE(pol ${POL_SOURCES})
+
+ADD_DEFINITIONS(-Wall -Wextra -Weffc++ -std=c++11
+                        -pedantic -g3 -O3)
+
+FIND_PACKAGE(Boost COMPONENTS system filesystem REQUIRED)
+
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+TARGET_LINK_LIBRARIES(pol ${Boost_LIBRARIES})
