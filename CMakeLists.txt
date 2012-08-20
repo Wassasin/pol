@@ -27,13 +27,13 @@ SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       "${PROJECT_SOURCE_DIR}/cmake/modules")
 
 FIND_PACKAGE(Boost COMPONENTS system filesystem REQUIRED)
-FIND_PACKAGE(crypto++ REQUIRED)
+FIND_PACKAGE(cryptopp REQUIRED)
 FIND_PACKAGE(msgpack REQUIRED)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}
                     ${Boost_INCLUDE_DIRS}
-                    ${crypto++_INCLUDE_DIRS}
+                    ${cryptopp_INCLUDE_DIRS}
                     ${msgpack_INCLUDE_DIRS})
 TARGET_LINK_LIBRARIES(pol ${Boost_LIBRARIES}
-                          ${crypto++_LIBRARIES}
+                          ${cryptopp_LIBRARIES}
                           ${msgpack_LIBRARIES})
