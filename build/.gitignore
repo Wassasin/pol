@@ -3,5 +3,6 @@
 /Makefile
 /cmake_install.cmake
 /install_manifest.txt
-/pol
 /config.h
+/ext
+/src

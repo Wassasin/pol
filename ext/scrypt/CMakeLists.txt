@@ -1,0 +1,19 @@
+INCLUDE(CheckFunctionExists)
+INCLUDE(CheckPrototypeExists)
+INCLUDE(FindSSE)
+
+CHECK_FUNCTION_EXISTS(posix_memalign HAVE_POSIX_MEMALIGN)
+CHECK_PROTOTYPE_EXISTS(be64enc "sys/endian.h" HAVE_DECL_BE64ENC)
+
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/scrypt_platform.h.in
+                        ${CMAKE_CURRENT_BINARY_DIR}/scrypt_platform.h)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+
+IF (SSE2_FOUND)
+ SET (SCRYPT_SOURCE_FILE crypto_scrypt-sse.c)
+ELSE ()
+ SET (SCRYPT_SOURCE_FILE crypto_scrypt-nosse.c)
+ENDIF ()
+
+ADD_LIBRARY(scrypt STATIC sha256.c ${SCRYPT_SOURCE_FILE})
